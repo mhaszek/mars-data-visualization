@@ -6,17 +6,20 @@ import scrape_mars
 app = Flask(__name__)
 
 
-
 # Route to render index.html template using data from Mongo
 @app.route("/")
 def home():
+    
+    # Return template and data
+    return render_template("index.html")
 
 
 # Route that will trigger the scrape function
 @app.route("/scrape")
 def scrape():
-
-
+    
+    # Run the scrape function
+    mars_data = scrape_mars.scrape()
 
 if __name__ == "__main__":
     app.run(debug=True)
