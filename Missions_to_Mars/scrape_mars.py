@@ -3,13 +3,14 @@ import time
 from bs4 import BeautifulSoup
 from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
-from splinter.exceptions import ElementDoesNotExist
 
+# define function to start browser
 def init_browser():
     # @NOTE: Replace the path with your actual path to the chromedriver
     executable_path = {"executable_path": "C:/Users/Danie/.wdm/drivers/chromedriver/win32/90.0.4430.24/chromedriver.exe"}
     return Browser("chrome", **executable_path, headless=False)
 
+# define scrape function
 def scrape():
     browser = init_browser()
     
@@ -74,6 +75,7 @@ def scrape():
         
         browser.visit(hemispheres_url)                  
        
+    
     browser.quit()
     
     
@@ -81,17 +83,20 @@ def scrape():
     facts_url = 'https://space-facts.com/mars/'
     tables = pd.read_html(facts_url)
     df = tables[0]
-    df.columns = ['Description', 'Value']
-    html_table = df.to_html()
+    df.columns = ['Name', 'Description']
+    def highlight_oddRow(s):
+        return ['' if s.name % 2 else 'background-color: #f9f9f9' for v in s]
+    html_table = df.style.apply(highlight_oddRow,axis=1).hide_index().render()
+    html_table = html_table.replace('\n', '')
+
     
-    
-    # add all results to mars data dict
+    # add all results to mars data dictionary
     mars_data["news_title"] = news_title
     mars_data["news_p"] = news_p
     mars_data["featured_image_url"] = featured_image_url
     mars_data["table"] = html_table
     mars_data["hemispheres"] = hemisphere_image_urls
     
-    # return mars data dict
+    
+    # return mars data dictionary
     return mars_data
-
