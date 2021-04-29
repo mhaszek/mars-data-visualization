@@ -1,0 +1,30 @@
+.jumbotron {
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 50%), url('mission_to_mars.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;}
+    .jumbotron a.btn.btn-primary.btn-lg {
+        background-color: #333333;
+        border-color: #252525;}
+
+table {
+    line-height: 2.4;
+    border: 2px solid black;}
+    table tbody .row0 {
+        border-top: 2px solid #808080;}
+    table tbody tr {
+        border-top: 1px solid #dee2e6;}
+    table .col0 {
+        font-weight: bold;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-right: 2px solid #808080;}
+    table .col1 {
+        padding-left: 10px;}
+
+
+.card.text-center.border-secondary.mb-3 {
+    border: 2px solid #dee2e6;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 15px;}

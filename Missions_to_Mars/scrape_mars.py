@@ -1,5 +1,6 @@
 import pandas as pd
 import time
+import datetime
 from bs4 import BeautifulSoup
 from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
@@ -7,7 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 # define function to start browser
 def init_browser():
     # @NOTE: Replace the path with your actual path to the chromedriver
-    executable_path = {"executable_path": "C:/Users/Danie/.wdm/drivers/chromedriver/win32/90.0.4430.24/chromedriver.exe"}
+    executable_path = {"executable_path": ChromeDriverManager().install()}
     return Browser("chrome", **executable_path, headless=False)
 
 # define scrape function
@@ -96,6 +97,7 @@ def scrape():
     mars_data["featured_image_url"] = featured_image_url
     mars_data["table"] = html_table
     mars_data["hemispheres"] = hemisphere_image_urls
+    mars_data['date'] = datetime.datetime.utcnow()
     
     
     # return mars data dictionary

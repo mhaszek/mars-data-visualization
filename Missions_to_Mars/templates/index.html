@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mission to Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <!-- if statement add in order to avoid error: 'jinja2.exceptions.UndefinedError: 'None' has no attribute' when running this page for the first time -->
+      <!-- if statement add in order to avoid error: 'jinja2.exceptions.UndefinedError: 'None' has no attribute x' when running this page for the first time -->
       {% if mars.hemispheres %}  
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-6">
