@@ -7,7 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 # define function to start browser
 def init_browser():
-    # @NOTE: Replace the path with your actual path to the chromedriver
+    
     executable_path = {"executable_path": ChromeDriverManager().install()}
     return Browser("chrome", **executable_path, headless=False)
 
@@ -15,7 +15,7 @@ def init_browser():
 def scrape():
     browser = init_browser()
     
-    # create surf_data dict that we can insert into mongo
+    # create mars_data dict that we can insert into mongo
     mars_data = {}
     
     # scrape Mars News
@@ -42,7 +42,7 @@ def scrape():
     image_url = image_soup.find("img", class_="fancybox-image")["src"]
     featured_image_url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/' + image_url
     
-    # scrape Mars Featured Image
+    # scrape Mars Facts
     facts_url = 'https://space-facts.com/mars/'
     tables = pd.read_html(facts_url)
     df = tables[0]
@@ -75,10 +75,9 @@ def scrape():
         hemisphere_image_urls.append(hemisphere_dict)
         
         browser.visit(hemispheres_url)                  
-       
+    
     
     browser.quit()
-    
     
     # scrape Mars Data Table
     facts_url = 'https://space-facts.com/mars/'
@@ -91,14 +90,13 @@ def scrape():
     html_table = html_table.replace('\n', '')
 
     
-    # add all results to mars data dictionary
+    # add all results to mars_data dictionary
     mars_data["news_title"] = news_title
     mars_data["news_p"] = news_p
     mars_data["featured_image_url"] = featured_image_url
     mars_data["table"] = html_table
     mars_data["hemispheres"] = hemisphere_image_urls
     mars_data['date'] = datetime.datetime.utcnow()
-    
     
     # return mars data dictionary
     return mars_data
