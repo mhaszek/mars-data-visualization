@@ -23,6 +23,7 @@ def home():
 # route to trigger the scrape function
 @app.route("/scrape")
 def scrape():
+    
     # run the scrape function
     mars_data = scrape_mars.scrape()
     

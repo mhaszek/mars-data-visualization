@@ -5,10 +5,12 @@ from bs4 import BeautifulSoup
 from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
 
+from config import driver_path
+
 # define function to start browser
 def init_browser():
     
-    executable_path = {"executable_path": ChromeDriverManager().install()}
+    executable_path = {"executable_path": driver_path}
     return Browser("chrome", **executable_path, headless=False)
 
 # define scrape function
@@ -22,6 +24,8 @@ def scrape():
     news_url = 'https://mars.nasa.gov/news/'
     browser.visit(news_url)
     
+    browser.is_element_present_by_css(".image_and_description_container", 2)
+    
     news_html = browser.html
     news_soup = BeautifulSoup(news_html, 'html.parser')
     
@@ -33,6 +37,8 @@ def scrape():
     # scrape Mars Featured Image
     mars_image_url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html'
     browser.visit(mars_image_url)
+    
+    browser.is_element_present_by_text("FULL IMAGE", 2)
     
     browser.links.find_by_partial_text('FULL IMAGE').click()
     
@@ -53,6 +59,9 @@ def scrape():
     # scrape Mars Hemispheres Images
     hemispheres_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(hemispheres_url)
+    
+    browser.is_element_present_by_css(".description", 2)
+    
     number_of_clicks = len(browser.find_by_css('div[class="description"] a'))
     
     hemisphere_image_urls = []
