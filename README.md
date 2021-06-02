@@ -72,4 +72,7 @@ To visit Mars Data Visualization webpage run `python app.py` in command line and
  * MongoDB
 
  
+#
+
+#### Contact: mil.haszek@gmail.com
 
