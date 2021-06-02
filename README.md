@@ -59,7 +59,7 @@ There are four key sources of data used:
 
 To run the example locally run the `climate_starter.ipynb` file in Jupyter Notebook. 
 
-To visit Mars Data Visualization webpage run `python app.py` in command line and visit `http://localhost:5000/`. NOTE: This application requires open local MongoDB connection.
+To visit Mars Data Visualization webpage run `python app.py` in command line and visit `http://localhost:5000/`. NOTE: This application requires open local MongoDB connection and `config.py` file with local `driver_path` for `ChromeDriverManager`.
 
 
 # Used Tools
